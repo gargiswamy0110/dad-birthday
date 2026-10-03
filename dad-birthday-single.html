@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{box-sizing:border-box}body{margin:0;overflow:hidden;font-family:Arial,sans-serif;background:#090014}.screen{width:100vw;min-height:100vh;height:100vh;overflow-y:auto;padding:30px 0;display:flex;justify-content:center;align-items:flex-start;text-align:center;color:white;background:radial-gradient(circle at 20% 20%,#ff3cac55,transparent 30%),radial-gradient(circle at 80% 80%,#784cff66,transparent 35%),linear-gradient(135deg,#090014,#210035,#090014)}.content{width:90%;max-width:650px;margin:auto;padding:20px 0 60px}.small{color:#ff9cda;font-size:12px;letter-spacing:5px}h1{font-size:60px;margin:20px 0;background:linear-gradient(90deg,#fff,#ff8bdc,#c59cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}p{font-size:20px;color:#eee}button{margin-top:30px;padding:16px 30px;border:1px solid #ff8bdc;border-radius:50px;background:#ffffff12;color:white;font-size:15px;font-weight:bold;cursor:pointer;transition:.3s}button:hover{transform:scale(1.08);background:#ff4fa333;box-shadow:0 0 30px #ff4fa388}.options{display:flex;flex-direction:column;align-items:center;gap:10px}.options button{margin-top:5px;width:280px}#response{color:#ff9cda;font-weight:bold;min-height:30px}#memoryPhoto{max-width:360px!important;max-height:45vh;object-fit:contain}#finalVideo{max-width:500px!important;max-height:50vh;object-fit:contain}@media(max-width:600px){h1{font-size:42px}p{font-size:18px}.content{width:92%}}
+
+body { overflow-y: auto !important; }
+.screen { min-height: 100vh !important; height: auto !important; overflow-y: visible !important; }
+
+</style>
+</head>
+<body>
+<div class="screen">
+<div class="content">
+<div class="small">A LITTLE SOMETHING FOR YOU...</div>
+<h1>Hey You. 👀</h1>
+<p>I have a tiny mission for you...</p>
+<button id="startBtn">START THE MISSION 💌</button>
+</div>
+</div>
+<script>
+const button=document.querySelector("#startBtn");
+button.onclick=function(){document.querySelector(".content").innerHTML=`<div class="small">LEVEL 01 🔐</div><h1>One little question...</h1><p>Do you know what happened when you entered my life?</p><div class="options"><button onclick="wrongAnswer()">Nothing special 😌</button><button onclick="wrongAnswer()">Things got complicated 😂</button><button onclick="correctAnswer()">Everything changed. ❤️</button></div><p id="response"></p>`};
+function wrongAnswer(){document.querySelector("#response").textContent="Hmmmm... try again 👀😂"}
+function correctAnswer(){document.querySelector(".content").innerHTML=`<div class="small">LEVEL 02 🎧</div><h1>Okay... ❤️</h1><p>Now listen to something I really wanted you to hear. 🎧</p><button id="playVoice">PLAY VOICE NOTE 🎧❤️</button>`;document.querySelector("#playVoice").onclick=function(){document.querySelector(".content").innerHTML=`<div class="small">A MESSAGE FOR YOU 🎧</div><h1>Listen... ❤️</h1><div style="font-size:70px;margin:25px;">🎧</div><audio id="voiceNote" controls autoplay style="width:100%;max-width:450px;"><source src="https://github.com/gargiswamy0110/dad-birthday/raw/refs/heads/main/instagram-voice-note%20(1).mp3" type="audio/mpeg"></audio>`;const audio=document.querySelector("#voiceNote");audio.play().catch(()=>console.log("Autoplay blocked — press play."));audio.onended=function(){document.querySelector(".content").innerHTML=`<div class="small">LEVEL 03 💌</div><h1>Wait... 👀❤️</h1><p>I thought that was all...</p><p>But there's still something waiting for you. ✨</p><button id="nextSurprise">CONTINUE 💌</button>`;document.querySelector("#nextSurprise").onclick=function(){document.querySelector(".content").innerHTML=`<div class="small">LEVEL 04 📸</div><h1>One More Surprise... ❤️</h1><p>Ready for some memories? 👀✨</p><button id="showMemories">SHOW THE MEMORIES 📸</button>`;document.querySelector("#showMemories").onclick=function(){document.querySelector(".content").innerHTML=`<div class="small">OUR MEMORIES 📸</div><h1>Little Moments ❤️</h1><img id="memoryPhoto" src="https://raw.githubusercontent.com/gargiswamy0110/dad-birthday/main/WhatsApp%20Image%202026-10-03%20at%2012.18.36%20AM.jpeg" style="width:100%;max-width:360px;height:auto;max-height:45vh;object-fit:contain;border-radius:20px;border:3px solid #ff9cda;box-shadow:0 0 30px #ff4fa388;transition:opacity .8s;"><p id="memoryText">Memory 1 ❤️</p>`;const photos=["https://raw.githubusercontent.com/gargiswamy0110/dad-birthday/main/WhatsApp%20Image%202026-10-03%20at%2012.18.36%20AM.jpeg","https://raw.githubusercontent.com/gargiswamy0110/dad-birthday/main/WhatsApp%20Image%202026-10-03%20at%2012.18.37%20AM.jpeg"];const photo=document.querySelector("#memoryPhoto"),text=document.querySelector("#memoryText");setTimeout(()=>{photo.style.opacity="0";setTimeout(()=>{photo.src=photos[1];text.textContent="Memory 2 ❤️";photo.style.opacity="1"},800)},4000);setTimeout(function(){document.querySelector(".content").innerHTML=`<div class="small">FINAL SURPRISE 👀</div><h1>Wait... 😭❤️</h1><p>You thought that was the end?</p><p>Not even close... 👀✨</p><button id="playVideo">PLAY THE FINAL SURPRISE 🎬❤️</button>`;document.querySelector("#playVideo").onclick=function(){document.querySelector(".content").innerHTML=`<div class="small">ONE LAST THING 🎬</div><h1>For You ❤️</h1><video id="finalVideo" controls autoplay playsinline style="width:100%;max-width:500px;max-height:50vh;object-fit:contain;border-radius:20px;border:3px solid #ff9cda;box-shadow:0 0 30px #ff4fa388;"><source src="https://github.com/gargiswamy0110/dad-birthday/raw/refs/heads/main/WhatsApp%20Video%202026-10-03%20at%2012.55.55%20AM.mp4" type="video/mp4"></video>`;const video=document.querySelector("#finalVideo");video.play().catch(()=>console.log("Autoplay blocked — press play."));video.onended=function(){document.querySelector(".content").innerHTML=`<div class="small">AND FINALLY... ❤️</div><h1>One Last Message... 💌</h1><p style="font-size:20px;">I saved one last thing for you... 🫶🏻</p><button id="nextLetter">NEXT 💌</button>`;document.querySelector("#nextLetter").onclick=function(){document.querySelector(".content").innerHTML=`<div class="small">A LETTER FOR YOU 💌</div><h1>You Made It. 🫶🏻</h1><div id="letterBox" style="margin:20px auto;padding:25px;max-width:560px;background:rgba(255,255,255,.08);border:1px solid rgba(255,155,218,.45);border-radius:20px;box-shadow:0 0 25px rgba(255,79,163,.25);text-align:left;line-height:1.8;font-size:17px;"></div>`;const letterText=`This little surprise was just my way of saying...
+
+I’m really, really lucky to have you. 🫶🏻✨
+
+Thank you so much that you always kept my inner child alive
+and never made me feel like I am an option for you.
+
+You also made me realize that sometimes believing in
+long distance are also worth it!!! ❤️
+
+Happy Boyfriend's Day Jannu. ❤️🎂
+
+AND I MISS YOU THE MOST!!! ❤️`;const box=document.querySelector("#letterBox"),words=letterText.trim().split(/\s+/);words.forEach((word,i)=>{const span=document.createElement("span");span.textContent=word+" ";span.style.opacity="0";span.style.transition="opacity .4s ease";box.appendChild(span);setTimeout(()=>span.style.opacity="1",i*180)});setTimeout(()=>{document.querySelector(".content").innerHTML=`<div class="small">THE END... ❤️</div><h1>And That's The End. 🫶🏻</h1><div style="margin:25px auto;padding:30px;max-width:560px;background:rgba(255,255,255,.08);border:1px solid rgba(255,155,218,.45);border-radius:25px;box-shadow:0 0 30px rgba(255,79,163,.3);line-height:1.9;font-size:19px;"><p>So... this was the end. ❤️</p><p>I hope you loved this little surprise. 🫶🏻</p><p>I don't really know how to confess my love towards you perfectly, but I do know one thing...</p><p style="font-size:23px;color:#ffb6e3;"><b>I really, really love you. ❤️</b></p><p>Thank you for being with me. 🫶🏻✨</p></div><div style="font-size:45px;margin-top:20px;">💌✨❤️</div>`},words.length*180+2000)}}}} ,8500)}}}}}};
+</script>
+</body>
+</html>
